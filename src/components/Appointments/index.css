@@ -1,0 +1,88 @@
+* {
+  font-family: 'Roboto';
+}
+.bg-container {
+  background-image: linear-gradient(to bottom, #fbc7d4, #9796f0);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appointment-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 80%;
+}
+.appointment-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.appointment-card-container div {
+  padding: 15px;
+  margin-left: 15px;
+}
+.main-heading {
+  color: #171f46;
+  font-size: 30px;
+  padding-left: 30px;
+}
+form div label {
+  color: #b5b7c4;
+  font-size: 16px;
+}
+form div input {
+  width: 100%;
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #171f46;
+  font-size: 16px;
+  margin-top: 8px;
+}
+.main-img {
+  width: 75%;
+}
+.add-button {
+  background-color: #8b5cf6;
+  border-width: 0;
+  color: #ffffff;
+  padding: 8px 8px;
+  width: 65px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+hr {
+  border: 1px solid #b5b7c4;
+  width: 87%;
+}
+.starred-appoinments-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 73px;
+  margin-right: 75px;
+}
+.starred-appoinments-container h1 {
+  color: #171f46;
+  font-size: 25px;
+}
+.starred-appoinments-container button {
+  border: 1px solid #8b5cf6;
+  border-radius: 13px;
+  padding: 5px 10px 5px 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #9897f0;
+  cursor: pointer;
+}
+ul {
+  display: flex;
+  width: 87%;
+  flex-wrap: wrap;
+  margin-left: 35px;
+}

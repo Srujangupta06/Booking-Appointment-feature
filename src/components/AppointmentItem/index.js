@@ -1,21 +1,35 @@
+import {format} from 'date-fns'
 import './index.css'
 
 const AppointmentItem = props => {
-  const {appointmentDetails} = props
+  const {appointmentDetails, toggleStarImg, isImportant} = props
   const {title, date, id} = appointmentDetails
+
+  const onClickStar = () => {
+    toggleStarImg(id)
+  }
+
+  const formattedDate = date
+    ? `Date:${format(new Date(date), 'dd MMM yyyy, EEEE')}`
+    : ''
+
+  const starImg = isImportant
+    ? 'https://assets.ccbp.in/frontend/react-js/appointments-app/filled-star-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/appointments-app/star-img.png'
   return (
-    <li>
-      <div className="container">
-        <h1>{title}</h1>
-        <button type="button">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/appointments-app/star-img.png"
-            alt="star-img"
-          />
-        </button>
-      </div>
-      <p>Date : {date}</p>
-    </li>
+    <>
+      {title && date && (
+        <li>
+          <div className="container">
+            <p className="card-title">{title}</p>
+            <button type="button" onClick={onClickStar} data-testid="star">
+              <img src={starImg} alt="star" />
+            </button>
+          </div>
+          <p>{formattedDate}</p>
+        </li>
+      )}
+    </>
   )
 }
 export default AppointmentItem

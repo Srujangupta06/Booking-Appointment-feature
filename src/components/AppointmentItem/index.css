@@ -3,20 +3,22 @@
 }
 li {
   list-style-type: none;
-  width: 230px;
+  width: 280px;
   border-radius: 15px;
   border: 1px solid #b5b7c4;
-  padding: 3px 10px;
+  padding: 12px 10px 8px 10px;
   margin: 0px 20px 20px 0px;
 }
-li div h1 {
+.card-title {
   font-size: 20px;
+  font-weight: 600;
   color: #171f46;
 }
-button {
+li div button {
   cursor: pointer;
   background-color: transparent;
   border-width: 0;
+  height: 20px;
 }
 .container {
   display: flex;
@@ -26,4 +28,12 @@ button {
 p {
   color: #b5b7c4;
   font-size: 14px;
+}
+li div button img {
+  height: 25px;
+}
+@media screen and (max-width: 767px) {
+  li {
+    width: 80%;
+  }
 }

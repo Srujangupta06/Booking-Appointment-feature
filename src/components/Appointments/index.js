@@ -11,8 +11,14 @@ const initialAppointmentsList = [
     isImportant: false,
   },
 ]
+
 class Appointments extends Component {
-  state = {title: '', date: '', appointmentList: initialAppointmentsList}
+  state = {
+    appointmentList: initialAppointmentsList,
+    title: '',
+    date: '',
+    onStarred: false,
+  }
 
   onAddTitle = event => {
     this.setState({
@@ -44,16 +50,29 @@ class Appointments extends Component {
     })
   }
 
+  toggleStarImg = id => {
+    this.setState(prevState => {
+      return {
+        appointmentList: prevState.appointmentList.map(eachItem => {
+          if (eachItem.id === id) {
+            return {...eachItem, isImportant: !eachItem.isImportant}
+          }
+          return eachItem
+        }),
+      }
+    })
+  }
+
   render() {
-    const {appointmentList} = this.state
-    const {title, date} = appointmentList
+    const {appointmentList, title, date} = this.state
+
     return (
       <div className="bg-container">
         <div className="appointment-container">
           <div className="appointment-card-container">
-            <div>
+            <div className="text-container">
               <h1 className="main-heading">Add Appointment</h1>
-              <form>
+              <form onSubmit={this.onBookAppointment}>
                 <div>
                   <label htmlFor="title">TITLE</label>
                   <input
@@ -73,11 +92,7 @@ class Appointments extends Component {
                     value={date}
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="add-button"
-                  onSubmit={this.onBookAppointment}
-                >
+                <button type="submit" className="add-button">
                   Add
                 </button>
               </form>
@@ -85,7 +100,7 @@ class Appointments extends Component {
             <div>
               <img
                 src="https://assets.ccbp.in/frontend/react-js/appointments-app/appointments-img.png "
-                alt="main-image"
+                alt="appointments"
                 className="main-img"
               />
             </div>
@@ -97,12 +112,14 @@ class Appointments extends Component {
               <button type="button">Starred</button>
             </div>
             <ul>
-              {appointmentList.map(eachAppointmentItem => {
-                ;<AppointmentItem
-                  appointmentDetails={eachAppointmentItem}
-                  key={eachAppointmentItem.id}
+              {appointmentList.map(eachItem => (
+                <AppointmentItem
+                  key={eachItem.id}
+                  isImportant={eachItem.isImportant}
+                  appointmentDetails={eachItem}
+                  toggleStarImg={this.toggleStarImg}
                 />
-              })}
+              ))}
             </ul>
           </div>
         </div>

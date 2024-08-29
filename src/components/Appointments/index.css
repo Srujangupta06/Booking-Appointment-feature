@@ -19,6 +19,7 @@
   justify-content: space-between;
   padding: 20px;
 }
+
 .appointment-card-container div {
   padding: 15px;
   margin-left: 15px;
@@ -85,4 +86,29 @@ ul {
   width: 87%;
   flex-wrap: wrap;
   margin-left: 35px;
+}
+@media screen and (max-width: 767px) {
+  .main-img {
+    display: none;
+  }
+  .appointment-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .text-container {
+    width: 100%;
+    padding: 10px;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0px;
+    width: 100%;
+  }
+  hr{
+    width: 75%;
+    margin-left: 4rem;
+  }
 }

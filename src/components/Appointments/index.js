@@ -17,7 +17,7 @@ class Appointments extends Component {
     appointmentList: initialAppointmentsList,
     title: '',
     date: '',
-    onStarred: false,
+    onStarredBtn: false,
   }
 
   onAddTitle = event => {
@@ -41,31 +41,51 @@ class Appointments extends Component {
       date,
       isImportant: false,
     }
-    this.setState(prevState => {
-      return {
-        appointmentList: [...prevState.appointmentList, newAppointmentItem],
-        title: '',
-        date: '',
-      }
-    })
+    this.setState(prevState => ({
+      appointmentList: [...prevState.appointmentList, newAppointmentItem],
+      title: '',
+      date: '',
+    }))
   }
 
   toggleStarImg = id => {
-    this.setState(prevState => {
-      return {
-        appointmentList: prevState.appointmentList.map(eachItem => {
-          if (eachItem.id === id) {
-            return {...eachItem, isImportant: !eachItem.isImportant}
-          }
-          return eachItem
-        }),
-      }
+    this.setState(prevState => ({
+      appointmentList: prevState.appointmentList.map(eachItem => {
+        if (eachItem.id === id) {
+          return {...eachItem, isImportant: !eachItem.isImportant}
+        }
+        return eachItem
+      }),
+    }))
+  }
+
+  onStarred = () => {
+    const {appointmentList, onStarredBtn} = this.state
+    this.setState({
+      onStarredBtn: !onStarredBtn,
     })
+
+    // if (onStarredBtn) {
+    //   this.setState({
+    //     appointmentList: appointmentList.filter(
+    //       eachItem => eachItem.isImportant === true,
+    //     ),
+    //   })
+    // } else {
+    //   this.setState({
+    //     appointmentList,
+    //   })
+    // }
   }
 
   render() {
-    const {appointmentList, title, date} = this.state
-
+    const {appointmentList, title, date, onStarredBtn} = this.state
+    let filteredAppointments = [...appointmentList]
+    if (onStarredBtn) {
+      filteredAppointments = filteredAppointments.filter(
+        eachItem => eachItem.isImportant === true,
+      )
+    }
     return (
       <div className="bg-container">
         <div className="appointment-container">
@@ -109,10 +129,12 @@ class Appointments extends Component {
           <div className="booked-appoinments-container">
             <div className="starred-appoinments-container">
               <h1>Appointments</h1>
-              <button type="button">Starred</button>
+              <button type="button" onClick={this.onStarred}>
+                Starred
+              </button>
             </div>
             <ul>
-              {appointmentList.map(eachItem => (
+              {filteredAppointments.map(eachItem => (
                 <AppointmentItem
                   key={eachItem.id}
                   isImportant={eachItem.isImportant}

@@ -10,7 +10,7 @@ const AppointmentItem = props => {
   }
 
   const formattedDate = date
-    ? `Date:${format(new Date(date), 'dd MMM yyyy, EEEE')}`
+    ? `Date: ${format(new Date(date), 'dd MMMM yyyy, EEEE')}`
     : ''
 
   const starImg = isImportant
@@ -18,7 +18,7 @@ const AppointmentItem = props => {
     : 'https://assets.ccbp.in/frontend/react-js/appointments-app/star-img.png'
   return (
     <>
-      {title && date && (
+      {title !== '' && date !== '' && (
         <li>
           <div className="container">
             <p className="card-title">{title}</p>
